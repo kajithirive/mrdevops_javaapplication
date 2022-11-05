@@ -109,6 +109,21 @@ pipeline{
                     }
                 }
             }
+            stage('Push Image to DockerHub'){
+
+                steps{
+
+                    script{
+
+                        withCredentials([string(credentialsId: 'dockerHub_passwd', variable: 'dockerHub_passwd')]) {
+                            
+                            sh 'docker login -u vikashashoke -p ${dockerHub_passwd}'
+                            sh 'docker image push vikashashoke/$JOB_NAME:v1.$BUILD_ID'
+                            sh 'docker image push vikashashoke/$JOB_NAME:latest'
+                      }
+                    }
+                }
+            }
         }
         
 }
