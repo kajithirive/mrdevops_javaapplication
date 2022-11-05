@@ -68,6 +68,31 @@ pipeline{
                     }
                 }
             }
+            stage('nexus artifact uploader.'){
+
+                steps{
+
+                    script{
+
+                        nexusArtifactUploader artifacts: 
+                        [
+                            [
+                                artifactId: 'springboot', 
+                                classifier: '', 
+                                file: 'target/springboot-1.0.0.jar',
+                                type: 'jar'
+                                ]
+                        ],
+                         credentialsId: 'nexus-creds', 
+                         groupId: 'com.example', 
+                         nexusUrl: '184.72.204.6:8081', 
+                         nexusVersion: 'nexus3', 
+                         protocol: 'http', 
+                         repository: 'http://184.72.204.6:8081/repository/mrdevopsapp-release/', 
+                         version: '1.0.0'
+                    }
+                }
+            }
         }
         
 }
