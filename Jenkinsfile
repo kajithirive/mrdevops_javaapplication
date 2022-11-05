@@ -88,7 +88,7 @@ pipeline{
                          nexusUrl: '184.72.204.6:8081', 
                          nexusVersion: 'nexus3', 
                          protocol: 'http', 
-                         repository: 'http://184.72.204.6:8081/repository/mrdevopsapp-release/', 
+                         repository: 'mrdevopsapp-release', 
                          version: '1.0.0'
                     }
                 }
